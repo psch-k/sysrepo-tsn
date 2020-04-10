@@ -413,8 +413,8 @@ cleanup:
 	return rc;
 }
 
-int qbv_subtree_change_cb(sr_session_ctx_t *session, const char *path,
-		sr_event_t event, void *private_ctx)
+int qbv_subtree_change_cb(sr_session_ctx_t *session, const char *module_name, const char *path,
+		sr_event_t event, uint32_t request_id, void *private_ctx)
 {
 	int rc = SR_ERR_OK;
 	char xpath[XPATH_MAX_LEN] = {0,};
