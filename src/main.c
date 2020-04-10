@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 					qbv_subtree_change_cb, NULL, 0,
 					opts, &if_subscription);
 	if (rc != SR_ERR_OK) {
-		fprintf(stderr, "Error by sr_module_change_subscribe: %s\n",
+		fprintf(stderr, "Error by sr_module_change_subscribe (QBV, QBV_GATE_PARA_XPATH): %s\n",
 			sr_strerror(rc));
 		goto cleanup;
 	}
@@ -155,7 +155,7 @@ int main(int argc, char **argv)
 					qbv_subtree_change_cb, NULL, 0,
 					opts, &if_subscription);
 	if (rc != SR_ERR_OK) {
-		fprintf(stderr, "Error by sr_module_change_subscribe: %s\n",
+		fprintf(stderr, "Error by sr_module_change_subscribe (QBV, QBV_MAX_SDU_XPATH): %s\n",
 			sr_strerror(rc));
 		goto cleanup;
 	}
@@ -168,7 +168,7 @@ int main(int argc, char **argv)
 					qbu_subtree_change_cb, NULL, 0,
 					opts, &if_subscription);
 	if (rc != SR_ERR_OK) {
-		fprintf(stderr, "Error by sr_module_change_subscribe: %s\n",
+		fprintf(stderr, "Error by sr_module_change_subscribe (QBU, QBU_XPATH): %s\n",
 			sr_strerror(rc));
 		goto cleanup;
 	}
@@ -180,6 +180,12 @@ int main(int argc, char **argv)
 	rc = sr_module_change_subscribe(session, "ieee802-dot1q-bridge", path,
 					cb_streamid_subtree_change_cb,
 					NULL, 0, opts, &bridge_subscription);
+	if (rc != SR_ERR_OK) {
+		fprintf(stderr, "Error by sr_module_change_subscribe (CB-StreamID, CB_STREAMID_XPATH): %s\n",
+			sr_strerror(rc));
+		goto cleanup;
+	}
+
 
 	/* Subscribe to QCI-Stream-Filter subtree */
 	snprintf(path, XPATH_MAX_LEN, BRIDGE_COMPONENT_XPATH);
@@ -188,6 +194,12 @@ int main(int argc, char **argv)
 	rc = sr_module_change_subscribe(session, "ieee802-dot1q-bridge", path,
 					qci_sf_subtree_change_cb,
 					NULL, 0, opts, &bridge_subscription);
+	if (rc != SR_ERR_OK) {
+		fprintf(stderr, "Error by sr_module_change_subscribe (QCI-Stream-Filter, QCISF_XPATH): %s\n",
+			sr_strerror(rc));
+		goto cleanup;
+	}
+
 
 	/* Subscribe to QCI-Stream-Gate subtree */
 	snprintf(path, XPATH_MAX_LEN, BRIDGE_COMPONENT_XPATH);
@@ -196,6 +208,12 @@ int main(int argc, char **argv)
 	rc = sr_module_change_subscribe(session, "ieee802-dot1q-bridge", path,
 					qci_sg_subtree_change_cb,
 					NULL, 0, opts, &bridge_subscription);
+	if (rc != SR_ERR_OK) {
+		fprintf(stderr, "Error by sr_module_change_subscribe (QCI-Stream-Gate, QCISG_XPATH): %s\n",
+			sr_strerror(rc));
+		goto cleanup;
+	}
+
 
 	/* Subscribe to QCI-Flow-Meter subtree */
 	snprintf(path, XPATH_MAX_LEN, BRIDGE_COMPONENT_XPATH);
@@ -204,9 +222,8 @@ int main(int argc, char **argv)
 	rc = sr_module_change_subscribe(session, "ieee802-dot1q-bridge", path,
 					 qci_fm_subtree_change_cb,
 					 NULL, 0, opts, &bridge_subscription);
-
 	if (rc != SR_ERR_OK) {
-		fprintf(stderr, "Error by sr_module_change_subscribe: %s\n",
+		fprintf(stderr, "Error by sr_module_change_subscribe (QCI-Flow-Meter, QCIFM_XPATH): %s\n",
 			sr_strerror(rc));
 		goto cleanup;
 	}
