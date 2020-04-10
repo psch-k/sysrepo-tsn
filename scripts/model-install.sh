@@ -8,23 +8,27 @@ local_path=$(dirname $0)
 
 : ${SYSREPOCTL:=sysrepoctl}
 : ${SYSREPOCFG:=sysrepocfg}
-: ${SYSREPOCTL_ROOT_PERMS:=-o root:root -p 600}
+OWNER=$(id -un)
+GROUP=$(id -gn ${OWNER})
+SYSREPOCTL_ROOT_PERMS="-o ${OWNER} -g ${GROUP} -p 600"
 : ${YANG_DIR:=$local_path/../modules}
 
 is_yang_module_installed() {
     module=$1
 
-    $SYSREPOCTL -l | grep --count "^$module [^|]*|[^|]*| Installed .*$" > /dev/null
+    $SYSREPOCTL -l | grep -c "^$module [^|]*|[^|]*| I .*$" > /dev/null
 }
 
 install_yang_module() {
-    module=$1
+    yang_file=$1
+    module="${yang_file%%@[-0-9]*}"
 
     if ! is_yang_module_installed $module; then
         echo "- Installing module $module..."
-        $SYSREPOCTL -i -g ${YANG_DIR}/$module.yang $SYSREPOCTL_ROOT_PERMS
+        $SYSREPOCTL -i ${YANG_DIR}/${yang_file}.yang -s "${YANG_DIR}" -v 2
+        $SYSREPOCTL -c $module $SYSREPOCTL_ROOT_PERMS
     else
-        echo "- Module $module already installed."
+        echo "- Module ${yang_file} already installed."
     fi
 }
 
@@ -32,9 +36,9 @@ enable_yang_module_feature() {
     module=$1
     feature=$2
 
-    if ! $SYSREPOCTL -l | grep --count "^$module [^|]*|[^|]*|[^|]*|[^|]*|[^|]*|[^|]*|.* $feature.*$" > /dev/null; then
+    if ! $SYSREPOCTL -l | grep -c "^$module [^|]*|[^|]*|[^|]*|[^|]*|[^|]*|[^|]*|.* $feature.*$" > /dev/null; then
         echo "- Enabling feature $feature in $module..."
-        $SYSREPOCTL -m $module -e $feature
+        $SYSREPOCTL -c $module -e $feature
     else
         echo "- Feature $feature in $module already enabled."
     fi
