@@ -282,7 +282,7 @@ int parse_sf_per_port_per_id(sr_session_ctx_t *session, bool abort)
 			continue;
 		}
 
-		rc = sr_get_items(session, xpath, 0, &values, &count);
+		rc = sr_get_items(session, xpath, 0, 0, &values, &count);
 		if (rc == SR_ERR_NOT_FOUND) {
 			rc = SR_ERR_OK;
 			cur_node = cur_node->next;

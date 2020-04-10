@@ -141,7 +141,7 @@ int config_qbu_per_port(sr_session_ctx_t *session, char *path, bool abort,
 	char xpath[XPATH_MAX_LEN] = {0};
 	char err_msg[MSG_MAX_LEN] = {0};
 
-	rc = sr_get_items(session, path, 0, &values, &count);
+	rc = sr_get_items(session, path, 0, 0, &values, &count);
 	if (rc == SR_ERR_NOT_FOUND) {
 		/*
 		 * If can't find any item, we should check whether this
