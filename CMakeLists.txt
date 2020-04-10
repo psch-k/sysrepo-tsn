@@ -54,7 +54,7 @@ find_package(PkgConfig)
 # get sysrepo plugins directory
 if (NOT SRPD_PLUGINS_PATH)
     if (PKG_CONFIG_FOUND)
-        execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} "--variable=SRPD_PLUGINS_PATH" "libsysrepo" OUTPUT_VARIABLE SRPD_PLUGINS_PATH)
+        execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} "--variable=SRPD_PLUGINS_PATH" "sysrepo" OUTPUT_VARIABLE SRPD_PLUGINS_PATH)
         string(STRIP ${SRPD_PLUGINS_PATH} SRPD_PLUGINS_PATH)
     endif()
 endif()
