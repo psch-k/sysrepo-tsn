@@ -69,12 +69,16 @@ GITHUB_YANG_ROUT_URL="https://raw.githubusercontent.com/YangModels/yang/master/s
 	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcr/ieee802-dot1q-stream-filters-gates.yang"
 [ ! -r "${YANG_DIR}/ieee802-dot1q-psfp.yang" ] && \
 	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-dot1q-psfp.yang"
+[ ! -r "${YANG_DIR}/ieee802-ethernet-interface.yang" ] && \
+        wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/published/802.3/ieee802-ethernet-interface.yang"
+
 
 
 install_yang_module iana-if-type@2017-01-19
 
 install_yang_module ietf-interfaces@2014-05-08
 install_yang_module ieee802-dot1q-types
+install_yang_module ieee802-ethernet-interface
 
 install_yang_module ieee802-dot1q-preemption
 enable_yang_module_feature ieee802-dot1q-preemption frame-preemption
