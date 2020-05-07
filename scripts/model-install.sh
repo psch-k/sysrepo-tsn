@@ -44,39 +44,10 @@ enable_yang_module_feature() {
     fi
 }
 
-#mkdir -p "${YANG_DIR}"
-#GITHUB_YANG_ROUT_URL="https://raw.githubusercontent.com/YangModels/yang/master/standard"
-
-#[ ! -r "${YANG_DIR}/ietf-interfaces@2014-05-08.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ietf/RFC/ietf-interfaces@2014-05-08.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-types.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-dot1q-types.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-preemption.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-dot1q-preemption.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-sched.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-dot1q-sched.yang"
-#[ ! -r "${YANG_DIR}/iana-if-type@2017-01-19.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ietf/RFC/iana-if-type@2017-01-19.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-bridge.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/published/802.1/ieee802-dot1q-bridge.yang"
-#[ ! -r "${YANG_DIR}/ietf-yang-types@2013-07-15.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ietf/RFC/ietf-yang-types@2013-07-15.yang"
-#[ ! -r "${YANG_DIR}/ieee802-types.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-types.yang"
-#[ ! -r "${YANG_DIR}/ietf-inet-types@2013-07-15.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ietf/RFC/ietf-inet-types@2013-07-15.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-stream-filters-gates.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcr/ieee802-dot1q-stream-filters-gates.yang"
-#[ ! -r "${YANG_DIR}/ieee802-dot1q-psfp.yang" ] && \
-#	wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/draft/802.1/Qcw/ieee802-dot1q-psfp.yang"
-#[ ! -r "${YANG_DIR}/ieee802-ethernet-interface.yang" ] && \
-#        wget -P "${YANG_DIR}" "${GITHUB_YANG_ROUT_URL}/ieee/published/802.3/ieee802-ethernet-interface.yang"
-
-
 
 install_yang_module iana-if-type@2017-01-19
 
-install_yang_module ietf-interfaces@2014-05-08
+install_yang_module ietf-interfaces@2018-02-20
 install_yang_module ieee802-dot1q-types
 install_yang_module ieee802-ethernet-interface
 
